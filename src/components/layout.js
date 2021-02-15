@@ -1,23 +1,18 @@
 import React from 'react'
-// import { Link } from 'gatsby'
 
 import cosmicjsLogo from '../../static/cosmicjs.svg'
 import gatsbyLogo from '../../static/gatsby.png'
 import { rhythm } from '../utils/typography'
 
-// Import typefaces
-import 'typeface-montserrat'
-import 'typeface-merriweather'
-
 export default ({ children }) => {
   return (
-    <div>
+    <div id="layoutRoot">
       <div
         style={{
           marginLeft: 'auto',
           marginRight: 'auto',
           marginTop: `${rhythm(3 / 4)}`,
-          maxWidth: rhythm(24),
+          maxWidth: rhythm(32),
           padding: `0 ${rhythm(3 / 4)} ${rhythm(3 / 4)} ${rhythm(3 / 4)}`,
           minHeight: 'calc(100vh - 42px)',
         }}
@@ -26,24 +21,22 @@ export default ({ children }) => {
       </div>
       <footer
         style={{
-          textAlign: 'center',
-          padding: `0 20px 80px 0`,
+          margin: rhythm(3 / 4),
+          color: '#818181',
+          fontSize: rhythm(0.5),
         }}
       >
         powered by&nbsp;
         <a
           target="_blank"
           href="https://gatsbyjs.org"
-          style={{
-            color: '#191919',
-            boxShadow: 'none',
-          }}
+          style={{ color: 'inherit' }}
         >
           <img
             src={gatsbyLogo}
             alt="Gatsby JS"
             style={{
-              width: '20px',
+              width: '15px',
               margin: '0 4px -3px 2px',
             }}
           />
@@ -53,16 +46,13 @@ export default ({ children }) => {
         <a
           target="_blank"
           href="https://cosmicjs.com"
-          style={{
-            color: '#191919',
-            boxShadow: 'none',
-          }}
+          style={{ color: 'inherit' }}
         >
           <img
             src={cosmicjsLogo}
             alt="Cosmic JS"
             style={{
-              width: '18px',
+              width: '13px',
               margin: '0 4px -2px 5px',
             }}
           />
