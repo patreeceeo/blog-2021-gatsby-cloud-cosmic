@@ -53,7 +53,7 @@ class BlogPostTemplate extends React.Component {
             textAlign: 'right',
           }}
         >
-          {post.created}
+          {post.metadata.published_date}
         </p>
         {heroImage && (
           <BackgroundImage
@@ -89,8 +89,8 @@ export const pageQuery = graphql`
       id
       content
       title
-      created(formatString: "MMMM DD, YYYY")
       metadata {
+        published_date
         hero {
           local {
             childImageSharp {
