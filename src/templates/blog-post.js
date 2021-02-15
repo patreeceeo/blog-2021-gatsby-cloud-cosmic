@@ -44,7 +44,7 @@ class BlogPostTemplate extends React.Component {
         <Helmet title={`${post.title} | ${siteTitle}`} />
         <div
           style={{
-            marginTop: rhythm(1.4),
+            marginTop: rhythm(3 / 4),
           }}
         >
           <Link to="/">← Back to Posts</Link>
