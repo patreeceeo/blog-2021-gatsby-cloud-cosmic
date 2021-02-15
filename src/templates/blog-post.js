@@ -20,6 +20,11 @@ class BlogPostTemplate extends React.Component {
     const location = get(this, 'props.location')
     const { previous, next } = this.props.pageContext
 
+    const heroImage = get(
+      post,
+      'post.metadata.hero.local.childImageSharp.fluid'
+    )
+
     return (
       <Layout location={location}>
         <style>
@@ -50,15 +55,17 @@ class BlogPostTemplate extends React.Component {
         >
           {post.created}
         </p>
-        <BackgroundImage
-          Tag="div"
-          className="post-hero"
-          fluid={post.metadata.hero.local.childImageSharp.fluid}
-          backgroundColor={`#007ACC`}
-          style={{
-            marginBottom: rhythm(0.6),
-          }}
-        />
+        {heroImage && (
+          <BackgroundImage
+            Tag="div"
+            className="post-hero"
+            fluid={heroImage}
+            backgroundColor={`#007ACC`}
+            style={{
+              marginBottom: rhythm(0.6),
+            }}
+          />
+        )}
         <div
           className="post-content"
           dangerouslySetInnerHTML={{ __html: post.content }}

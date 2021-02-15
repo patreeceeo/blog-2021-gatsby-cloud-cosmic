@@ -2,6 +2,21 @@ const each = require('lodash/each')
 const Promise = require('bluebird')
 const path = require('path')
 
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type CosmicImage {
+      local: File @fileByRelativePath
+    }
+    type CosmicjsPostsMetadata implements Node {
+      description: String
+      hero: CosmicImage
+      published_override_date: Date
+    }
+  `
+  createTypes(typeDefs)
+}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   const indexPage = path.resolve('./src/pages/index.js')
@@ -16,28 +31,31 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            allCosmicjsPosts(sort: { fields: [created], order: DESC }, limit: 1000) {
+            allCosmicjsPosts(
+              sort: { fields: [created], order: DESC }
+              limit: 1000
+            ) {
               edges {
                 node {
-                  slug,
+                  slug
                   title
                 }
               }
             }
           }
         `
-      ).then(result => {
+      ).then((result) => {
         if (result.errors) {
           console.log(result.errors)
           reject(result.errors)
         }
 
         // Create blog posts pages.
-        const posts = result.data.allCosmicjsPosts.edges;
+        const posts = result.data.allCosmicjsPosts.edges
 
         each(posts, (post, index) => {
-          const next = index === posts.length - 1 ? null : posts[index + 1].node;
-          const previous = index === 0 ? null : posts[index - 1].node;
+          const next = index === posts.length - 1 ? null : posts[index + 1].node
+          const previous = index === 0 ? null : posts[index - 1].node
 
           createPage({
             path: `posts/${post.node.slug}`,
