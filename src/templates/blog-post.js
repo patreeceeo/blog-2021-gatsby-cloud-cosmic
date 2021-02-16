@@ -2,7 +2,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import get from 'lodash/get'
 import { graphql } from 'gatsby'
-import BackgroundImage from 'gatsby-background-image'
+import Image from 'gatsby-image'
 
 import Bio from '../components/Bio'
 import Layout from '../components/layout'
@@ -10,7 +10,7 @@ import { rhythm } from '../utils/typography'
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.cosmicjsPosts
+    const post = get(this.props, 'data.cosmicjsPosts')
     const siteTitle = get(
       this.props,
       'data.cosmicjsSettings.metadata.site_title'
@@ -18,8 +18,11 @@ class BlogPostTemplate extends React.Component {
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
     const location = get(this, 'props.location')
 
-    const heroImage = get(post, 'metadata.hero.local.childImageSharp.fluid')
-    debugger
+    const hasFeaturedImage = get(post, 'metadata.has_featured_image')
+    const featuredImageFluid = get(
+      post,
+      'metadata.featured_image.local.childImageSharp.fluid'
+    )
 
     return (
       <Layout location={location}>
@@ -31,13 +34,16 @@ class BlogPostTemplate extends React.Component {
           .post-hero {
             width: calc(100% + ${rhythm(8)});
             margin-left: ${rhythm(-4)};
-            height: ${rhythm(18)};
           }
           @media (max-width: ${rhythm(32)}) {
             .post-hero {
               width: calc(100% + ${rhythm((3 / 4) * 2)});
               margin-left: ${rhythm(-3 / 4)};
-              height: ${rhythm(13)};
+            }
+          }
+          @media (max-width: ${rhythm(16)}) {
+            .post-content {
+              text-align: left;
             }
           }
         `}
@@ -51,11 +57,11 @@ class BlogPostTemplate extends React.Component {
         >
           {post.metadata.published_date}
         </p>
-        {heroImage && (
-          <BackgroundImage
-            Tag="div"
+        {hasFeaturedImage && featuredImageFluid && (
+          <Image
             className="post-hero"
-            fluid={heroImage}
+            Tag="div"
+            fluid={featuredImageFluid}
             backgroundColor={`#007ACC`}
             style={{
               marginBottom: rhythm(0.6),
@@ -87,7 +93,8 @@ export const pageQuery = graphql`
       title
       metadata {
         published_date
-        hero {
+        has_featured_image
+        featured_image {
           local {
             childImageSharp {
               fluid(quality: 90, maxWidth: 1920) {

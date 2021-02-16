@@ -2,21 +2,6 @@ const each = require('lodash/each')
 const Promise = require('bluebird')
 const path = require('path')
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
-  const typeDefs = `
-    type CosmicImage {
-      local: File @fileByRelativePath
-    }
-    type CosmicjsPostsMetadata implements Node {
-      description: String
-      published_date: Date @dateformat(formatString: "DD-MM-YYYY")
-      is_scrap: Boolean
-    }
-  `
-  createTypes(typeDefs)
-}
-
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   const indexPage = path.resolve('./src/pages/index.js')
