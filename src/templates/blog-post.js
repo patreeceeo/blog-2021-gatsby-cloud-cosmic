@@ -1,13 +1,12 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { Link } from 'gatsby'
 import get from 'lodash/get'
 import { graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 
 import Bio from '../components/Bio'
 import Layout from '../components/layout'
-import { rhythm, scale } from '../utils/typography'
+import { rhythm } from '../utils/typography'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -18,12 +17,9 @@ class BlogPostTemplate extends React.Component {
     )
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
     const location = get(this, 'props.location')
-    const { previous, next } = this.props.pageContext
 
-    const heroImage = get(
-      post,
-      'post.metadata.hero.local.childImageSharp.fluid'
-    )
+    const heroImage = get(post, 'metadata.hero.local.childImageSharp.fluid')
+    debugger
 
     return (
       <Layout location={location}>

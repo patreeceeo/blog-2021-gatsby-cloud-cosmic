@@ -10,7 +10,6 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
     type CosmicjsPostsMetadata implements Node {
       description: String
-      hero: CosmicImage
       published_date: Date @dateformat(formatString: "DD-MM-YYYY")
     }
   `
