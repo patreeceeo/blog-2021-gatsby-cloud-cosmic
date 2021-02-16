@@ -24,6 +24,7 @@ class BlogIndex extends React.Component {
         <Bio settings={author} />
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
+          const isScrap = get(node, 'metadata.is_scrap')
           return (
             <div key={node.slug}>
               <h3
@@ -31,9 +32,11 @@ class BlogIndex extends React.Component {
                   marginBottom: rhythm(1 / 4),
                 }}
               >
-                <Link style={{ boxShadow: 'none' }} to={`posts/${node.slug}`}>
-                  {title}
-                </Link>
+                {!isScrap && (
+                  <Link style={{ boxShadow: 'none' }} to={`posts/${node.slug}`}>
+                    {title}
+                  </Link>
+                )}
               </h3>
               <small>{node.metadata.published_date}</small>
               <p
@@ -60,6 +63,7 @@ export const pageQuery = graphql`
           metadata {
             description
             published_date
+            is_scrap
           }
           slug
           title

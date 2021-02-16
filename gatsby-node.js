@@ -11,6 +11,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     type CosmicjsPostsMetadata implements Node {
       description: String
       published_date: Date @dateformat(formatString: "DD-MM-YYYY")
+      is_scrap: Boolean
     }
   `
   createTypes(typeDefs)
