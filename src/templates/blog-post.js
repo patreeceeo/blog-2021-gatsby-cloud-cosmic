@@ -23,7 +23,7 @@ class BlogPostTemplate extends React.Component {
       post,
       'metadata.featured_image.local.childImageSharp.fluid'
     )
-    const featuredImageUrl = get(post, 'metadata.featured_image.imgix_url')
+    const featuredImageUrl = get(featuredImageFluid, 'srcWebp')
     const pageTitle = `${post.title} | ${siteTitle}`
     const postDescription = get(post, 'metadata.description')
 
@@ -126,7 +126,6 @@ export const pageQuery = graphql`
         published_date
         has_featured_image
         featured_image {
-          imgix_url
           local {
             childImageSharp {
               fluid(quality: 90, maxWidth: 1920) {
