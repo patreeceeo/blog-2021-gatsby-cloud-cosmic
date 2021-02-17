@@ -65,7 +65,7 @@ class BlogPostTemplate extends React.Component {
           />
           <meta
             property="og:url"
-            content={`https://patrickcanfield.com/${post.slug}`}
+            content={`https://www.patrickcanfield.com/${post.slug}`}
           />
           <meta name="twitter:card" content="summary_large_image" />
           <meta property="og:site_name" content={siteTitle} />
