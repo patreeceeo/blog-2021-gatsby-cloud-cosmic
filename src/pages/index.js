@@ -57,16 +57,14 @@ class BlogIndex extends React.Component {
                 }}
               >
                 {hasFeaturedImage && (
-                  <Image
-                    fluid={featuredImageFluid}
-                    className="featured-image"
-                  />
-                )}
-                {!isScrap && (
-                  <Link style={{ boxShadow: 'none' }} to={`posts/${node.slug}`}>
-                    {title}
+                  <Link to={`posts/${node.slug}`}>
+                    <Image
+                      fluid={featuredImageFluid}
+                      className="featured-image"
+                    />
                   </Link>
                 )}
+                {!isScrap && <Link to={`posts/${node.slug}`}>{title}</Link>}
               </h3>
               <small>{node.metadata.published_date}</small>
               <p
