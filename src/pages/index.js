@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import Image from 'gatsby-image'
 
 import Bio from '../components/Bio'

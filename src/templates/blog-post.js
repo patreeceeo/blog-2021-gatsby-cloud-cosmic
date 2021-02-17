@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import get from 'lodash/get'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import Image from 'gatsby-image'
 
 import Bio from '../components/Bio'
@@ -49,6 +49,9 @@ class BlogPostTemplate extends React.Component {
         `}
         </style>
         <Helmet title={`${post.title} | ${siteTitle}`} />
+        <Link to="/" style={{ color: '#818181' }}>
+          ← home
+        </Link>
         <h1>{post.title}</h1>
         <p
           style={{
@@ -78,6 +81,9 @@ class BlogPostTemplate extends React.Component {
           }}
         />
         <Bio settings={author} />
+        <Link to="/" style={{ color: '#818181' }}>
+          ← home
+        </Link>
       </Layout>
     )
   }
