@@ -61,11 +61,9 @@ class BlogPostTemplate extends React.Component {
           />
           <meta
             property="og:image"
-            content={featuredImageUrl || author.author_avatar.imgix_url}
-          />
-          <meta
-            property="twitter:image"
-            content={featuredImageUrl || author.author_avatar.imgix_url}
+            content={`${
+              featuredImageUrl || author.author_avatar.imgix_url
+            }?348392`}
           />
           <meta
             property="og:url"
