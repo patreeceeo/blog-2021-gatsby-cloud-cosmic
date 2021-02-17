@@ -29,7 +29,7 @@ class BlogIndex extends React.Component {
           }
 
           .featured-image {
-            float: right;
+            float: left;
             width: ${rhythm(6)};
             margin: ${rhythm(1 / 2)};
             margin-top: 0;
@@ -51,7 +51,7 @@ class BlogIndex extends React.Component {
             'metadata.featured_image.local.childImageSharp.fluid'
           )
           return (
-            <div key={node.slug}>
+            <div key={node.slug} className="clearfix">
               <h3
                 style={{
                   marginBottom: rhythm(1 / 4),
