@@ -23,6 +23,9 @@ class BlogPostTemplate extends React.Component {
       post,
       'metadata.featured_image.local.childImageSharp.fluid'
     )
+    const featuredImageUrl = get(post, 'metadata.featured_image.imgix_url')
+    const pageTitle = `${post.title} | ${siteTitle}`
+    const postDescription = get(post, 'metadata.description')
 
     return (
       <Layout location={location}>
@@ -48,7 +51,26 @@ class BlogPostTemplate extends React.Component {
           }
         `}
         </style>
-        <Helmet title={`${post.title} | ${siteTitle}`} />
+        <Helmet title={pageTitle}>
+          <meta property="og:title" content={pageTitle} />
+          <meta
+            property="og:description"
+            content={
+              postDescription || 'Verbal/visual noodlings of Patrick Canfield'
+            }
+          />
+          <meta
+            property="og:image"
+            content={featuredImageUrl || author.author_avatar.imgix_url}
+          />
+          <meta
+            property="og:url"
+            content={`https://patrickcanfield.com/${post.slug}`}
+          />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta property="og:site_name" content={siteTitle} />
+          <meta name="twitter:image:alt" content={postDescription} />
+        </Helmet>
         <Link to="/" style={{ color: '#818181' }}>
           ← home
         </Link>
@@ -66,6 +88,7 @@ class BlogPostTemplate extends React.Component {
             Tag="div"
             fluid={featuredImageFluid}
             backgroundColor={`#007ACC`}
+            alt={postDescription}
             style={{
               marginBottom: rhythm(0.6),
             }}
@@ -97,10 +120,13 @@ export const pageQuery = graphql`
       id
       content
       title
+      slug
       metadata {
+        description
         published_date
         has_featured_image
         featured_image {
+          imgix_url
           local {
             childImageSharp {
               fluid(quality: 90, maxWidth: 1920) {
