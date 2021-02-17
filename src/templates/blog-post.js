@@ -23,7 +23,7 @@ class BlogPostTemplate extends React.Component {
       post,
       'metadata.featured_image.local.childImageSharp.fluid'
     )
-    const featuredImageUrl = `https://patrickcanfield.com/${get(
+    const featuredImageUrl = `https://patrickcanfield.com${get(
       featuredImageFluid,
       'srcWebp'
     )}`
@@ -64,9 +64,7 @@ class BlogPostTemplate extends React.Component {
           />
           <meta
             property="og:image"
-            content={`${
-              featuredImageUrl || author.author_avatar.imgix_url
-            }?348392`}
+            content={`${featuredImageUrl || author.author_avatar.imgix_url}`}
           />
           <meta
             property="og:url"
