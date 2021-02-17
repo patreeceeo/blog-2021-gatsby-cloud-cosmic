@@ -32,6 +32,7 @@ class BlogIndex extends React.Component {
             width: ${rhythm(6)};
             margin: ${rhythm(1 / 2)};
             margin-top: 0;
+            margin-left: 0;
           }
           @media (max-width: ${rhythm(16)}) {
             .featured-image {
