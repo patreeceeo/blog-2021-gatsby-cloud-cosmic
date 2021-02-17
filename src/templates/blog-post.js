@@ -64,6 +64,10 @@ class BlogPostTemplate extends React.Component {
             content={featuredImageUrl || author.author_avatar.imgix_url}
           />
           <meta
+            property="twitter:image"
+            content={featuredImageUrl || author.author_avatar.imgix_url}
+          />
+          <meta
             property="og:url"
             content={`https://www.patrickcanfield.com/posts/${post.slug}`}
           />
