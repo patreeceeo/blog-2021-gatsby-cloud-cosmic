@@ -23,7 +23,10 @@ class BlogPostTemplate extends React.Component {
       post,
       'metadata.featured_image.local.childImageSharp.fluid'
     )
-    const featuredImageUrl = get(featuredImageFluid, 'srcWebp')
+    const featuredImageUrl = `https://patrickcanfield.com/${get(
+      featuredImageFluid,
+      'srcWebp'
+    )}`
     const pageTitle = `${post.title} | ${siteTitle}`
     const postDescription = get(post, 'metadata.description')
 
