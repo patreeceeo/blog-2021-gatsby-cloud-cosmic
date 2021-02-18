@@ -37,6 +37,11 @@ class BlogPostTemplate extends React.Component {
           .post-content {
             text-align: justify;
           }
+          @media (max-width: ${rhythm(16)}) {
+            .post-content {
+              text-align: left;
+            }
+          }
           .post-hero {
             width: calc(100% + ${rhythm(8)});
             margin-left: ${rhythm(-4)};
@@ -45,11 +50,6 @@ class BlogPostTemplate extends React.Component {
             .post-hero {
               width: calc(100% + ${rhythm((3 / 4) * 2)});
               margin-left: ${rhythm(-3 / 4)};
-            }
-          }
-          @media (max-width: ${rhythm(16)}) {
-            .post-content {
-              text-align: left;
             }
           }
         `}

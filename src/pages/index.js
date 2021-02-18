@@ -39,6 +39,14 @@ class BlogIndex extends React.Component {
               width: ${rhythm(4)};
             }
           }
+          .post-description {
+            text-align: justify;
+          }
+          @media (max-width: ${rhythm(16)}) {
+            .post-description {
+              text-align: left;
+            }
+          }
         `}</style>
         <Helmet title={siteTitle} />
         <Bio settings={author} />
@@ -69,6 +77,7 @@ class BlogIndex extends React.Component {
               </h3>
               <small>{node.metadata.published_date}</small>
               <p
+                className="post-description"
                 dangerouslySetInnerHTML={{ __html: node.metadata.description }}
               />
             </div>
