@@ -5,6 +5,10 @@ export default ({ settings }) => (
   <div
     style={{
       display: 'flex',
+      flex: '1 1 auto',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
     }}
   >
     <img

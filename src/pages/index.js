@@ -14,6 +14,14 @@ class BlogIndex extends React.Component {
       this,
       'props.data.cosmicjsSettings.metadata.site_title'
     )
+    const siteHeading = get(
+      this,
+      'props.data.cosmicjsSettings.metadata.site_heading'
+    )
+    const siteDescription = get(
+      this,
+      'props.data.cosmicjsSettings.metadata.site_description'
+    )
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
     const location = get(this, 'props.location')
@@ -49,7 +57,11 @@ class BlogIndex extends React.Component {
           }
         `}</style>
         <Helmet title={siteTitle} />
-        <Bio settings={author} />
+        <h1>{siteTitle}</h1>
+        <h2>{siteHeading}</h2>
+        <p>
+          <a href="#about">about</a>
+        </p>
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           const isScrap = get(node, 'metadata.is_scrap')
@@ -83,6 +95,13 @@ class BlogIndex extends React.Component {
             </div>
           )
         })}
+        <h4>
+          <a id="about" />
+          About me
+        </h4>
+        <Bio settings={author} />
+        <h4>About this site</h4>
+        <p>{siteDescription}</p>
       </Layout>
     )
   }
@@ -121,6 +140,8 @@ export const pageQuery = graphql`
     cosmicjsSettings(slug: { eq: "general" }) {
       metadata {
         site_title
+        site_heading
+        site_description
         author_name
         author_bio
         author_avatar {
