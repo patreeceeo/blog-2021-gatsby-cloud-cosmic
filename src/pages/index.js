@@ -4,23 +4,16 @@ import { Helmet } from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 import Image from 'gatsby-image'
 
-import Bio from '../components/Bio'
 import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
+
+import '../global.css'
 
 class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(
       this,
       'props.data.cosmicjsSettings.metadata.site_title'
-    )
-    const siteHeading = get(
-      this,
-      'props.data.cosmicjsSettings.metadata.site_heading'
-    )
-    const siteDescription = get(
-      this,
-      'props.data.cosmicjsSettings.metadata.site_description'
     )
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
@@ -57,11 +50,14 @@ class BlogIndex extends React.Component {
           }
         `}</style>
         <Helmet title={siteTitle} />
-        <h1>{siteTitle}</h1>
-        <h2>{siteHeading}</h2>
-        <p>
-          <a href="#about">about</a>
-        </p>
+        <div className="clearfix">
+          <img
+            src={author.author_avatar.imgix_url}
+            alt={author.author_name}
+            className="featured-image"
+          />
+          <div dangerouslySetInnerHTML={{ __html: author.author_bio }} />
+        </div>
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           const isScrap = get(node, 'metadata.is_scrap')
@@ -95,13 +91,6 @@ class BlogIndex extends React.Component {
             </div>
           )
         })}
-        <h4>
-          <a id="about" />
-          About me
-        </h4>
-        <Bio settings={author} />
-        <h4>About this site</h4>
-        <p>{siteDescription}</p>
       </Layout>
     )
   }
@@ -140,8 +129,6 @@ export const pageQuery = graphql`
     cosmicjsSettings(slug: { eq: "general" }) {
       metadata {
         site_title
-        site_heading
-        site_description
         author_name
         author_bio
         author_avatar {

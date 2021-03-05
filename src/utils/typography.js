@@ -4,7 +4,7 @@ import Theme from 'typography-theme-wikipedia'
 Theme.overrideThemeStyles = () => ({
   '#layoutRoot h1, #layoutRoot h2, #layoutRoot h3': {
     'border-bottom': 'none',
-  },
+  }
 })
 
 delete Theme.googleFonts

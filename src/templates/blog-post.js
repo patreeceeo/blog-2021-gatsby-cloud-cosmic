@@ -4,7 +4,6 @@ import get from 'lodash/get'
 import { Link, graphql } from 'gatsby'
 import Image from 'gatsby-image'
 
-import Bio from '../components/Bio'
 import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
 
@@ -59,7 +58,7 @@ class BlogPostTemplate extends React.Component {
           <meta
             property="og:description"
             content={
-              postDescription || 'Verbal/visual noodlings of Patrick Canfield'
+              postDescription
             }
           />
           <meta
@@ -106,7 +105,6 @@ class BlogPostTemplate extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
-        <Bio settings={author} />
         <Link to="/" style={{ color: '#818181' }}>
           ← home
         </Link>
